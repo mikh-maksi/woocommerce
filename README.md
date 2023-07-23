@@ -31,3 +31,22 @@ Woocommerce має наступні основні елементи відобр
 * Хук: woocommerce_single_product_summary, елементи: woocommerce_template_single_title, woocommerce_template_single_rating, woocommerce_template_single_price, woocommerce_template_single_excerpt, woocommerce_template_single_add_to_cart, woocommerce_template_single_meta, woocommerce_template_single_sharing, WC_Structured_Data::generate_product_data()
 * Хук: woocommerce_after_single_product_summary, елементи: woocommerce_output_product_data_tabs, woocommerce_upsell_display, woocommerce_output_related_products
 * Хук: woocommerce_after_single_product
+
+# Плагін frequently-bought-together
+Цей плагін дозволяє виводити декілька товарів разом.
+Основний файл плагіна: wpc-frequently-bought-together.php
+Задача по роботі із плагіном - виявити основні класи і їх вже переоформити, прописав потрібні стилі.
+
+Класи:  
+* Основна обертка (в тому числі по ціну внизу списку): woobt-wrap woobt-layout-default woobt-wrap-147 woobt-wrap-responsive
+* Обертка товарів: woobt-products woobt-products-layout-default woobt-products-147
+* Класи картки основного товару: woobt-product woobt-product-this
+* Класи картки додаткових товарів: woobt-product woobt-product-this
+* Елементи товару:
+* * woobt-choose - чекбокс
+* * woobt-thumb - картинка
+* * woobt-title - назва
+* * woobt-price - ціна
+
+? Як підключити CSS спеціально під ці стилі?
+Підключаємо до основного файлу style.css через імпорт: 
