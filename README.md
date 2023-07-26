@@ -50,3 +50,40 @@ Woocommerce має наступні основні елементи відобр
 
 ? Як підключити CSS спеціально під ці стилі?
 Підключаємо до основного файлу style.css через імпорт: 
+
+## Сторінка Чекауту.
+Шаблон знаходиться за адресою: woocommerce/checkout/form-checkout.php  
+Основна задача - підключити стилі, які вже створені на стандартну сторінку чекауту (бо поля для продажів створює сам WordPress)
+
+## Використання API
+Включаємо підтрику API для необхідного типу (lesson)
+
+```
+## Додаємо підтримку REST API для вже наявного типу запису
+add_filter( 'register_post_type_args', 'my_custom_post_type_rest_support', 10, 2 );
+function my_custom_post_type_rest_support( $args, $post_type ) {
+
+	// переконаємось, що це наш тип запису
+	if ( $post_type === 'lesson' ) {
+		$args['show_in_rest']          = true;
+		$args['rest_base']             = 'lesson';
+		$args['rest_controller_class'] = 'WP_REST_Posts_Controller';
+	}
+
+	return $args;
+}
+
+```
+
+
+Робимо запит:
+https://www.course.innovations.kh.ua/wp-json/wp/v2/lesson/256
+
+_links | wp:featuredmedia | 0 | href
+
+"https://www.course.innovations.kh.ua/wp-json/wp/v2/media/318"
+
+За цим посиланням отримаємо адресу картинки:
+
+source_url : "https://www.course.innovations.kh.ua/wp-content/uploads/2023/07/image-409223145.png"
+
